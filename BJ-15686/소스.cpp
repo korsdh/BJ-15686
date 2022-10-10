@@ -16,14 +16,14 @@ bool visit[14];
 int min_distance = INT_MAX; // answer
 
 int Distance(P a, P b) {
-	return abs(a.first - b.first) + abs(a.second - b.second);
+	return (abs(a.first - b.first) + abs(a.second - b.second));
 }
 
 void trace(int n, int m) {
 	if (m == M) {
 		int result = 0;
 		for (int i = 0; i < house.size(); i++) {
-			int temp_distance = 0;
+			int temp_distance = INT_MAX;
 			for (int j = 0; j < picked.size(); j++) {
 				temp_distance = min(temp_distance, Distance(house[i], picked[j]));
 			}
