@@ -13,7 +13,7 @@ vector<P> house;
 vector<P> chiken;
 vector<P> picked;
 bool visit[14];
-int min_distance = INT_MAX;
+int min_distance = INT_MAX; // answer
 
 int Distance(P a, P b) {
 	return abs(a.first - b.first) + abs(a.second - b.second);
@@ -21,7 +21,15 @@ int Distance(P a, P b) {
 
 void trace(int n, int m) {
 	if (m == M) {
-
+		int result = 0;
+		for (int i = 0; i < house.size(); i++) {
+			int temp_distance = 0;
+			for (int j = 0; j < picked.size(); j++) {
+				temp_distance = min(temp_distance, Distance(house[i], picked[j]));
+			}
+			result += temp_distance;
+		}
+		min_distance = min(min_distance, result);
 	}
 	for (int i = n; i < chiken.size(); i++) {
 		if (visit[i] == true) continue;
@@ -47,4 +55,7 @@ int main() {
 			}
 		}
 	}
+	trace(0, 0);
+	cout << min_distance << endl;
+	return 0;
 }
